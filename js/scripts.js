@@ -1,51 +1,43 @@
-$(document).ready(function() {
-  $("form#new-contact").submit(function(event) {
+$(document).ready(function () {
+  $('form#new-triangle').submit(function(event) {
     event.preventDefault();
 
-    var inputtedFirstName = $("input#new-first-name").val();
-    var inputtedLastName = $("input#new-last-name").val();
-    var inputtedStreet1 = $("input#new-street1").val();
-    var inputtedStreet2 = $("input#new-street2").val();
-    var inputtedCity = $("input#new-city").val();
-    var inputtedState = $("input#new-state").val();
-    var inputtedZip = $("input#new-zip").val()
+    var input_sideA = parseInt($('input#new_side_a').val());
+    var input_sideB = parseInt($('input#new_side_b').val());
+    var input_sideC = parseInt($('input#new_side_c').val());
 
-    var newAddress = { street1: inputtedStreet1,
-                       street2: inputtedStreet2,
-                       city: inputtedCity,
-                       state: inputtedState,
-                       zip: inputtedZip,
-                       fullAddress: function() {
-                         if ((/([\w])/).test(this.street2)) {
-                           return this.street1 + ', ' + this.street2 + ', ' + this.city + ', ' + this.state + ', ' + this.zip;
-                         } else {
-                           return this.street1 + ', ' + this.city + ', ' + this.state + ', ' + this.zip;
-                         }
-                       }
-                      };
+    var newTriangle = {   sideA: input_sideA,
+                          sideB: input_sideB,
+                          sideC: input_sideC,
+                          type: function() {
+                            if (this.sideA + this.sideB < this.sideC || this.sideA + this.sideC < this.sideB || this.sideB + this.sideC < this.sideA) {
+                              return "This is not a triangle";
+                            } else if (this.sideA === this.sideB && this.sideA === this.sideC) {
+                              return "equilateral";
+                            } else if ((this.sideA === this.sideB) && (this.sideA !== this.sideC) || (this.sideA === this.sideC) && (this.sideA !== this.sideB) || (this.sideB === this.sideC && sideB !== this.sideA)) {
+                              return "isoceles";
+                            } else {
+                              return "scalene";
+                            }
+                          }
+                        };
+                            // debugger;
 
-    var newContact = { firstName: inputtedFirstName,
-                       lastName: inputtedLastName,
-                       address: newAddress.fullAddress()
-                     };
+    if (newTriangle.type() === 'equilateral') {
+        $("ul#equilaterals").append("<li><span class='equilateral'>" +
+        newTriangle.sideA + ' ' + newTriangle.sideB + ' ' + newTriangle.sideC +"</span></li>");
+      } else if (newTriangle.type() === 'isoceles'){
+        $("ul#isosceles").append("<li><span class='isosceles'>" +
+        newTriangle.sideA + ' ' + newTriangle.sideB + ' ' + newTriangle.sideC +"</span></li>");
+      } else if (newTriangle.type() === 'scalene'){
+        $("ul#scalenes").append("<li><span class='scalene'>" +
+        newTriangle.sideA + ' ' + newTriangle.sideB + ' ' + newTriangle.sideC +"</span></li>");
+      } 
 
-    $("ul#contacts").append("<li><span class='contact'>" +
-                           newContact.firstName + " " +
-                           newContact.lastName +
-                           "</span></li>");
+    $('input#new_side_a').val('');
+    $('input#new_side_b').val('');
+    $('input#new_side_c').val('');
 
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input#new-street1").val("");
-    $("input#new-street2").val("");
-    $("input#new-city").val("");
-    $("input#new-state").val("");
-    $("input#new-zip").val("");
 
-    $(".contact").last().click(function() {
-      $("#show-contact").show();
-      $("#show-contact h2").text(newContact.firstName + "" + newContact.lastName);
-      $(".address").text(newContact.address);
-    });
   });
 });
