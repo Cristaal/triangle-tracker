@@ -32,12 +32,14 @@ $(document).ready(function () {
       } else if (newTriangle.type() === 'scalene'){
         $("ul#scalenes").append("<li><span class='scalene'>" +
         newTriangle.sideA + ' ' + newTriangle.sideB + ' ' + newTriangle.sideC +"</span></li>");
-      } 
+      } else {
+        alert("That is not a triangle");
+      }
 
     $('input#new_side_a').val('');
     $('input#new_side_b').val('');
     $('input#new_side_c').val('');
 
-
+   
   });
 });
