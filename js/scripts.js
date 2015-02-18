@@ -10,7 +10,9 @@ $(document).ready(function () {
                           sideB: input_sideB,
                           sideC: input_sideC,
                           type: function() {
-                            if (this.sideA + this.sideB < this.sideC || this.sideA + this.sideC < this.sideB || this.sideB + this.sideC < this.sideA) {
+                            if (this.sideA <= 0 || sideB <= 0 || sideC <= 0) {
+                              return "This is not a triangle";
+                            } else if (this.sideA + this.sideB < this.sideC || this.sideA + this.sideC < this.sideB || this.sideB + this.sideC < this.sideA) {
                               return "This is not a triangle";
                             } else if (this.sideA === this.sideB && this.sideA === this.sideC) {
                               return "equilateral";
@@ -40,6 +42,6 @@ $(document).ready(function () {
     $('input#new_side_b').val('');
     $('input#new_side_c').val('');
 
-   
+
   });
 });
