@@ -12,6 +12,7 @@ $(document).ready(function () {
                           sideC: inputSideC,
                           type: function() {
                             if (isNaN(this.sideA) || isNaN(this.sideB) || isNaN(this.sideC)) {
+                              return "Please enter a set of three numbers";
                             } else if (this.sideA <= 0 || this.sideB <= 0 || this.sideC <= 0) {
                               return "This is not a triangle";
                             } else if (this.sideA + this.sideB < this.sideC || this.sideA + this.sideC < this.sideB || this.sideB + this.sideC < this.sideA) {
@@ -30,12 +31,14 @@ $(document).ready(function () {
     if (newTriangle.type() === 'equilateral') {
         $("ul#equilaterals").append("<li><span class='equilateral'>" +
         newTriangle.sideA + ' ' + newTriangle.sideB + ' ' + newTriangle.sideC +"</span></li>");
-      } else if (newTriangle.type() === 'isoceles'){
+      } else if (newTriangle.type() === 'isoceles') {
         $("ul#isosceles").append("<li><span class='isosceles'>" +
         newTriangle.sideA + ' ' + newTriangle.sideB + ' ' + newTriangle.sideC +"</span></li>");
-      } else if (newTriangle.type() === 'scalene'){
+      } else if (newTriangle.type() === 'scalene') {
         $("ul#scalenes").append("<li><span class='scalene'>" +
         newTriangle.sideA + ' ' + newTriangle.sideB + ' ' + newTriangle.sideC +"</span></li>");
+      } else if (newTriangle.type() === 'Please enter a set of three numbers') {
+        alert("Please enter a set of three numbers");
       } else {
         alert("That is not a triangle");
       }
