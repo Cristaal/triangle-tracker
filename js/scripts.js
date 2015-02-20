@@ -11,7 +11,8 @@ $(document).ready(function () {
                           sideB: inputSideB,
                           sideC: inputSideC,
                           type: function() {
-                            if (this.sideA <= 0 || sideB <= 0 || sideC <= 0) {
+                            if (isNaN(this.sideA) || isNaN(this.sideB) || isNaN(this.sideC)) {
+                            } else if (this.sideA <= 0 || this.sideB <= 0 || this.sideC <= 0) {
                               return "This is not a triangle";
                             } else if (this.sideA + this.sideB < this.sideC || this.sideA + this.sideC < this.sideB || this.sideB + this.sideC < this.sideA) {
                               return "This is not a triangle";
