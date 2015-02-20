@@ -2,13 +2,14 @@ $(document).ready(function () {
   $('form#new-triangle').submit(function(event) {
     event.preventDefault();
 
-    var input_sideA = parseInt($('input#new_side_a').val());
-    var input_sideB = parseInt($('input#new_side_b').val());
-    var input_sideC = parseInt($('input#new_side_c').val());
+    var inputSideA = parseInt($('input#new-side-a').val());
+    var inputSideB = parseInt($('input#new-side-b').val());
+    var inputSideC = parseInt($('input#new-side-c').val());
+    debugger;
 
-    var newTriangle = {   sideA: input_sideA,
-                          sideB: input_sideB,
-                          sideC: input_sideC,
+    var newTriangle = {   sideA: inputSideA,
+                          sideB: inputSideB,
+                          sideC: inputSideC,
                           type: function() {
                             if (this.sideA <= 0 || sideB <= 0 || sideC <= 0) {
                               return "This is not a triangle";
@@ -38,9 +39,9 @@ $(document).ready(function () {
         alert("That is not a triangle");
       }
 
-    $('input#new_side_a').val('');
-    $('input#new_side_b').val('');
-    $('input#new_side_c').val('');
+    $('input#new-side-a').val('');
+    $('input#new-side-b').val('');
+    $('input#new-side-c').val('');
 
 
   });
